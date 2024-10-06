@@ -14,15 +14,18 @@ void check(string Text, int key) {
         cout << cipherText << endl;
         cout << decryptedText << endl;
     } catch(const cipher_error & e) {
-        cerr << "Ошибка: " << e.what() << endl;
+        std::cerr << "Ошибка: " << e.what() << std::endl;
     }
 }
 
 int main() {
     try {
-        check("Kulmination", 6);
+        check("kulmination", 6);
+        check("", 6); 
+        check("1212121212121", 6);
+        check("kulmination", 658567);
     } catch(const cipher_error & e) {
-        cerr << "Ошибка: " << e.what() << endl;
+        std::cerr << "Ошибка: " << e.what() << std::endl;
     }
     return 0;
 }

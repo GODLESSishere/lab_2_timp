@@ -1,3 +1,4 @@
+// main.cpp
 #include <iostream>
 #include <cctype>
 #include <locale>
@@ -15,9 +16,9 @@ void check(const string& Text, const string& key, const bool destructCipherText=
             cipherText += 32;
         decryptedText = cipher.decrypt(cipherText);
         cout << "Ключ = " << key << endl;
-        cout << Text << endl;
-        cout << cipherText << endl;
-        cout << decryptedText << endl;
+        cout << "Открытый текст: " << Text << endl;
+        cout << "Зашифрованный текст: " << cipherText << endl;
+        cout << "Расшифрованный текст: " << decryptedText << endl;
     } catch (const cipher_error &e) {
         cerr << "Ошибка: " << e.what() << endl;
     } catch (const std::exception &e) {

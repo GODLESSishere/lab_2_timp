@@ -1,4 +1,3 @@
-// modAlphaCipher.cpp
 #include "modAlphaCipher.h"
 #include <locale>
 #include <codecvt>

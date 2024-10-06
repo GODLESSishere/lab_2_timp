@@ -1,3 +1,4 @@
+// modAlphaCipher.cpp
 #include "modAlphaCipher.h"
 #include <locale>
 #include <codecvt>
@@ -62,11 +63,15 @@ inline string modAlphaCipher::getValidOpenText(const string & s) {
     wstring ws = codec.from_bytes(s);
     wstring tmp;
     for (auto c:ws) {
-        if (c >= L'А' && c <= L'Я') {
+        if (c >= L'А' && c <= L'Я' || c >= L'а' && c <= L'я') {
             if (c >= L'а' && c <= L'я')
                 tmp.push_back(c -= 32);
             else
                 tmp.push_back(c);
+        } else if (c == L' ') {
+            tmp.push_back(c); // Allow spaces
+        } else {
+            throw cipher_error("Недопустимый символ в тексте");
         }
     }
     if (tmp.empty())

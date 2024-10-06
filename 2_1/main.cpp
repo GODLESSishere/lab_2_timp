@@ -39,6 +39,6 @@ int main() {
     check("11", "КЛЮЧ");
     cout << "испытание 6\n" << endl;
     check("ОДИННАДЦАТЬ", "КЛЮЧ", true);
-    cout << "испытание 7 (выше)\n" << endl;
+    cout << "испытание 7\n" << endl;
     return 0;
 }

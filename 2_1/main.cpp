@@ -44,5 +44,7 @@ int main() {
     cout << "испытание 5\n" << endl;
     check("11", "КЛЮЧ");
     cout << "испытание 6\n" << endl;
+    check("           ", "КЛЮЧ");
+    cout << "испытание 7\n" << endl;
     return 0;
 }

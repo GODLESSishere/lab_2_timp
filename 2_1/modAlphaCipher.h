@@ -9,7 +9,7 @@ using namespace std;
 class modAlphaCipher {
     private:
         wstring numAlpha = L"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-        map <char,int> alphaNum;
+        map <wchar_t,int> alphaNum;
         vector <int> key;
         vector<int> convert(const string& s);
         string convert(const vector<int>& v);

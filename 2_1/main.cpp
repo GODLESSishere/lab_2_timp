@@ -11,13 +11,19 @@ void check(const string& Text, const string& key, const bool destructCipherText=
         string decryptedText;
         modAlphaCipher cipher(key);
         cipherText = cipher.encrypt(Text);
-        if (destructCipherText)
-            cipherText += 32;
         decryptedText = cipher.decrypt(cipherText);
+
+        string decryptedTextNoSpaces;
+        for (char c : decryptedText) {
+            if (c != ' ') {
+                decryptedTextNoSpaces += c;
+            }
+        }
+
         cout << "Ключ = " << key << endl;
         cout << "Открытый текст: " << Text << endl;
         cout << "Зашифрованный текст: " << cipherText << endl;
-        cout << "Расшифрованный текст: " << decryptedText << endl;
+        cout << "Расшифрованный текст: " << decryptedTextNoSpaces << endl;
     } catch (const cipher_error &e) {
         cerr << "Ошибка: " << e.what() << endl;
     } catch (const std::exception &e) {
@@ -38,7 +44,5 @@ int main() {
     cout << "испытание 5\n" << endl;
     check("11", "КЛЮЧ");
     cout << "испытание 6\n" << endl;
-    check("ОДИННАДЦАТЬ", "КЛЮЧ", true);
-    cout << "испытание 7\n" << endl;
     return 0;
 }

@@ -16,16 +16,14 @@ modAlphaCipher::modAlphaCipher(const string& skey) {
 string modAlphaCipher::encrypt(const string& open_text) {
     vector<int> work = convert(getValidOpenText(open_text));
     for(unsigned i=0; i < work.size(); i++)
-        work[i] = (work[i] + key[i % key.size()]) %
-                  alphaNum.size();
+        work[i] = (work[i] + key[i % key.size()]) % numAlpha.size();
     return convert(work);
 }
 
 string modAlphaCipher::decrypt(const string& cipher_text) {
     vector<int> work = convert(getValidCipherText(cipher_text));
     for(unsigned i=0; i < work.size(); i++)
-        work[i] = (work[i] + alphaNum.size() - key[i %
-                   key.size()]) % alphaNum.size();
+        work[i] = (work[i] + numAlpha.size() - key[i % key.size()]) % numAlpha.size();
     return convert(work);
 }
 
@@ -64,11 +62,10 @@ inline string modAlphaCipher::getValidOpenText(const string & s) {
     for (auto c:ws) {
         if (c >= L'А' && c <= L'Я' || c >= L'а' && c <= L'я') {
             if (c >= L'а' && c <= L'я')
-                tmp.push_back(c -= 32);
+                tmp.push_back(c -= 32); 
             else
                 tmp.push_back(c);
         } else if (c == L' ') {
-            tmp.push_back(c); // Allow spaces
         } else {
             throw cipher_error("Недопустимый символ в тексте");
         }
@@ -80,11 +77,5 @@ inline string modAlphaCipher::getValidOpenText(const string & s) {
 
 inline string modAlphaCipher::getValidCipherText(const string & s) {
     wstring ws = codec.from_bytes(s);
-    if (ws.empty())
-        throw cipher_error("Empty cipher text");
-    for (auto c:ws) {
-        if ((c < L'А' || c > L'Я') && c != L'Ё')
-            throw cipher_error(string("Неверный зашифрованный текст ")+s);
-    }
     return codec.to_bytes(ws);
 }

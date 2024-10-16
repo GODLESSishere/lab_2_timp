@@ -1,6 +1,7 @@
 #include "modCipher.h"
 #include <iostream>
-#include <algorithm> 
+#include <algorithm>
+#include <cctype> 
 
 modCipher::modCipher(int skey, string text) {
     if (text.empty())
